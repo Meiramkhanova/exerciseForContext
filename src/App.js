@@ -38,7 +38,7 @@ function Greeting() {
   let { setCurrentUser } = useContext(CurrentUserContext);
   return (
     <div>
-      <p>You logged in as {currentUser.name}</p>
+      <p>You logged in as {currentUser.fullname}</p>
       <Button onClick={() => setCurrentUser(null)}>Log Out</Button>
     </div>
   );
@@ -71,7 +71,7 @@ function LoginForm() {
       <Button
         disabled={!canLogin}
         onClick={() => {
-          setCurrentUser({ name: firstName + "" + lastName });
+          setCurrentUser({ fullname: firstName + "" + lastName });
         }}
       >
         Log In
