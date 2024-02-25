@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /* margin: auto;
+  width: 50%;
+  margin-top: 100px; */
+  margin: 100px auto;
+  width: 40%;
+}
+
 .paneldark {
   color: #fff;
   background: rgb(23, 32, 42);
@@ -16,4 +28,17 @@
 .buttonlight {
   color: #222;
   background: #fff;
+}
+
+label {
+  display: block;
+  padding-bottom: 15px;
+}
+
+.panellight,
+.paneldark {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 15px;
 }
