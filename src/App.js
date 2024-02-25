@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { createContext, useContext, useState } from "react";
 
-function App() {
+const ThemeContext = createContext(null);
+
+export default function App() {
+  const [theme, setTheme] = useState("light");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={theme}>
+      <Container />
+      <label>
+        <input
+          type="checkbox"
+          checked={theme === "dark"}
+          onChange={(e) => setTheme(e.target.checked ? "dark" : "light")}
+        />
+        Use Dark Mode
+      </label>
+    </ThemeContext.Provider>
   );
 }
 
-export default App;
+function Container() {
+  return (
+    <Panel title="Hello">
+      <Button>Sign Up</Button>
+      <Button>Log in </Button>
+    </Panel>
+  );
+}
+
+function Panel({ title, children }) {
+  const theme = useContext(ThemeContext);
+  const className = "panel" + theme;
+
+  return (
+    <div className={className}>
+      <h1>{title}</h1>
+      {children}
+    </div>
+  );
+}
+function Button({ children }) {
+  const theme = useContext(ThemeContext);
+  const className = "button" + theme;
+  return <button className={className}>{children}</button>;
+}
